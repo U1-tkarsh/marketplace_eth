@@ -27,9 +27,7 @@ export default function List({courses}) {
                 {course.type}
               </div>
               <Link href={`/courses/${course.slug}`} className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-                
                   {course.title}
-                
               </Link>
               <p
                 className="mt-2 text-gray-500">
