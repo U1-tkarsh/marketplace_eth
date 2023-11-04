@@ -1,14 +1,13 @@
 import Link from "next/link";
-import { useWeb3 } from "@components/providers"
-import { Button } from "@components/common"
-import { useAccount } from "@components/web3/hooks/useAccount"
+import { useWeb3 } from "@components/providers";
+import { Button } from "@components/common";
+import { useAccount } from "@components/web3/hooks/useAccount";
 
 export default function Footer() {
-  const { connect, isLoading, isWeb3Loaded } = useWeb3()
-  const { account } = useAccount()
+  const { connect, isLoading, isWeb3Loaded } = useWeb3();
+  const { account } = useAccount();
   return (
     <section>
-      {account}
       <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
         <nav className="relative" aria-label="Global">
           <div className="flex justify-between items-center">
@@ -39,26 +38,32 @@ export default function Footer() {
               >
                 Wishlist
               </Link>
-              { isLoading ?
-                <Button
-                  disabled={true}
-                  onClick={connect}>
-                    Loading...
-                </Button> :
-                isWeb3Loaded ?
-                <Button
-                  onClick={connect}>
-                    Connect
-                    </Button> :
-                <Button
-                  onClick={() => window.open("https://metamask.io/download/", "_blank")}>
-                  Install Metamask
+              {isLoading ? (
+                <Button disabled={true} onClick={connect}>
+                  Loading...
+                </Button>
+              ) : isWeb3Loaded ? (
+                account ? (
+                  <Button hoverable={false} className="cursor-default ">
+                    Hi there
                   </Button>
-              }
+                ) : (
+                  <Button onClick={connect}>Connect</Button>
+                )
+              ) : (
+                <Button
+                  onClick={() =>
+                    window.open("https://metamask.io/download/", "_blank")
+                  }
+                >
+                  Install Metamask
+                </Button>
+              )}
             </div>
           </div>
         </nav>
       </div>
+      {account && <div className="flex justify-end pt-1 sm:px-6 lg:px-8"><div className="text-whie bg-indigo-600 rounded-md p-2">{account}</div></div>}
     </section>
   );
 }
