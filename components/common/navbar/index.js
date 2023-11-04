@@ -6,6 +6,7 @@ import { useAccount } from "@components/web3/hooks/useAccount";
 export default function Footer() {
   const { connect, isLoading, isWeb3Loaded } = useWeb3();
   const { account } = useAccount();
+
   return (
     <section>
       <div className="relative pt-6 px-4 sm:px-6 lg:px-8">
@@ -43,7 +44,7 @@ export default function Footer() {
                   Loading...
                 </Button>
               ) : isWeb3Loaded ? (
-                account ? (
+                account.data ? (
                   <Button hoverable={false} className="cursor-default ">
                     Hi there
                   </Button>
@@ -63,7 +64,7 @@ export default function Footer() {
           </div>
         </nav>
       </div>
-      {account && <div className="flex justify-end pt-1 sm:px-6 lg:px-8"><div className="text-whie bg-indigo-600 rounded-md p-2">{account}</div></div>}
+      {account.data && <div className="flex justify-end pt-1 sm:px-6 lg:px-8"><div className="text-whie bg-indigo-600 rounded-md p-2">{account.data}</div></div>}
     </section>
   );
 }
