@@ -1,1 +1,2 @@
-export { default as OrferInfo} from "./card";
+export { default as OrderInfo} from "./card";
+export { default as OrderModal} from "./modal";
