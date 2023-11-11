@@ -1,72 +1,63 @@
-import { Button } from "@components/common";
+import {  Button } from "@components/common";
 import { CourseCard, CourseList } from "@components/common/course";
 import { BaseLayout } from "@components/common/layout";
+import { MarketHeader } from "@components/common/marketplace";
 import { OrderModal } from "@components/common/order";
-import { EthRates, WalletBar } from "@components/web3";
-import { useAccount, useNetwork } from "@components/web3/hooks";
-import { useEthPrice } from "@components/web3/hooks/useEthPrice";
+import { useWalletInfo } from "@components/web3/hooks";
 import { getAllCourses } from "content/courses/fetcher";
-import { useState } from "react"
+import { useState } from "react";
 
-export default function Marketplace({courses}) {
-  const [selectedCourse, setSelectedCourse] = useState(null)
-  const { account } = useAccount()
-  const { network } = useNetwork()
-  const { eth } = useEthPrice()
+export default function Marketplace({ courses }) {
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const { canPurchaseCourse } = useWalletInfo();
+
+  const purchaseCourse = (order) => {
+    alert(JSON.stringify(order))
+  }
 
   return (
     <>
       <div className="py-4">
-        <WalletBar
-          address={account.data}
-          network={{
-            data: network.data,
-            target: network.target,
-            isSupported: network.isSupported,
-            hasInitialResponse: network.hasInitialResponse
-          }}
-        />
-        <EthRates
-          eth={eth.data}
-          ethPerItem={eth.perItem}
-        />
+        <MarketHeader />
       </div>
-      <CourseList
-        courses={courses}
-      >
-      {course =>
-        <CourseCard
-          key={course.id}
-          course={course}
-          Footer={() =>
-            <div className="mt-4">
-              <Button
-                onClick={() => setSelectedCourse(course)}
-                variant="lightPurple">
-                Purchase
-              </Button>
-            </div>
-          }
-        />
-      }
+      <CourseList courses={courses}>
+        {(course) => (
+          <CourseCard
+            key={course.id}
+            course={course}
+            disabled={!canPurchaseCourse}
+            Footer={() => (
+              <div className="mt-4">
+                <Button
+                  onClick={() => setSelectedCourse(course)}
+                  disabled={!canPurchaseCourse}
+                  variant="lightPurple"
+                >
+                  Purchase
+                </Button>
+              </div>
+            )}
+          />
+        )}
       </CourseList>
-      { selectedCourse &&
+      {selectedCourse && (
         <OrderModal
           course={selectedCourse}
+          onSubmit={purchaseCourse}
           onClose={() => setSelectedCourse(null)}
         />
-      }
+      )}
     </>
-  )
+  );
 }
 
 export function getStaticProps() {
-  const { data } = getAllCourses()
+  const { data } = getAllCourses();
   return {
     props: {
-      courses: data
-    }
-  }
+      courses: data,
+    },
+  };
 }
 
-Marketplace.Layout = BaseLayout
+Marketplace.Layout = BaseLayout;

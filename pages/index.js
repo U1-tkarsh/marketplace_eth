@@ -3,7 +3,6 @@ import { Hero } from "@components/common"
 import { CourseCard, CourseList } from "@components/common/course";
 import { BaseLayout } from "@components/common/layout";
 import { getAllCourses } from "content/courses/fetcher";
-// import { getAllCourses } from "@content/courses/fetcher"
 
 export default function Home({courses}) {
   return (
