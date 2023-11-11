@@ -12,3 +12,5 @@ export { default as ActiveLink } from "./link"
 
 export { default as Message } from "./message"
 export { default as CourseFilter } from "./course/filter"
+
+export { default as Loader } from "./loader"
