@@ -1,16 +1,23 @@
 import { Navbar, Footer} from "@components/common"
 import { Web3Provider } from "@components/providers"
+import Script from "next/script"
 
 export default function BaseLayout({children}) {
   return (
-    <Web3Provider>
-      <div className="relative max-w-7xl mx-auto px-4">
-        <Navbar />
-        <div className="fit">
-          {children}
+    <>
+      <Script
+        src="/js/truffle-contract.js"
+        strategy="lazyOnLoad"
+      />
+      <Web3Provider>
+        <div className="max-w-7xl mx-auto px-4">
+          <Navbar />
+          <div className="fit">
+            {children}
+          </div>
         </div>
-      </div>
-      <Footer />
-    </Web3Provider>
+        <Footer />
+      </Web3Provider>
+    </>
   );
 }
