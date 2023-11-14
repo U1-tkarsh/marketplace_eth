@@ -7,14 +7,26 @@ import { loadContract } from "@utils/loadContract";
 
 const Web3Context = createContext(null)
 
+const createWeb3State = (web3, provider, contract, isLoading) => {
+  return {
+    web3,
+    provider,
+    contract,
+    isLoading,
+    hooks: setupHooks({web3, provider, contract})
+  }
+}
+
 export default function Web3Provider({children}) {
-  const [web3Api, setWeb3Api] = useState({
-    provider: null,
-    web3: null,
-    contract: null,
-    isLoading: true,
-    hooks: setupHooks()
-  })
+  const [web3Api, setWeb3Api] = useState(
+    createWeb3State({
+      provider: null,
+      web3: null,
+      contract: null,
+      isLoading: true,
+      hooks: setupHooks({provider: null, web3: null, contract: null})
+    })
+  )
 
   useEffect(() => {
     const loadProvider = async () => {
@@ -22,15 +34,17 @@ export default function Web3Provider({children}) {
       const provider = await detectEthereumProvider()
       if (provider) {
         const web3 = new Web3(provider)
-        const contract = await loadContract("CourseMarketplace", provider)
-        console.log(contract);
-        setWeb3Api({
-          provider,
-          web3,
-          contract,
-          isLoading: false,
-          hooks: setupHooks(web3, provider)
-        })
+        const contract = await loadContract("CourseMarketplace", web3)
+
+        setWeb3Api(
+            createWeb3State({
+            provider,
+            web3,
+            contract,
+            isLoading: false,
+            // hooks: setupHooks({web3, provider, contract})
+          })
+        )
       } else {
         setWeb3Api(api => ({...api, isLoading: false}))
         console.error("Please, install Metamask.")
@@ -40,9 +54,8 @@ export default function Web3Provider({children}) {
     loadProvider()
   }, [])
 
-  // useMemo return a object as a callback function when the new object change, So here we will retrieve new object only when the web API change.
   const _web3Api = useMemo(() => {
-    const { web3, provider, isLoading} = web3Api
+    const { web3, provider, isLoading } = web3Api
     return {
       ...web3Api,
       requireInstall: !isLoading && !web3 ,
