@@ -7,7 +7,7 @@ import { loadContract } from "@utils/loadContract";
 
 const Web3Context = createContext(null)
 
-const createWeb3State = (web3, provider, contract, isLoading) => {
+const createWeb3State = ({web3, provider, contract, isLoading}) => {
   return {
     web3,
     provider,
@@ -20,11 +20,10 @@ const createWeb3State = (web3, provider, contract, isLoading) => {
 export default function Web3Provider({children}) {
   const [web3Api, setWeb3Api] = useState(
     createWeb3State({
-      provider: null,
       web3: null,
+      provider: null,
       contract: null,
-      isLoading: true,
-      hooks: setupHooks({provider: null, web3: null, contract: null})
+      isLoading: true
     })
   )
 
@@ -37,12 +36,11 @@ export default function Web3Provider({children}) {
         const contract = await loadContract("CourseMarketplace", web3)
 
         setWeb3Api(
-            createWeb3State({
-            provider,
+          createWeb3State({
             web3,
+            provider,
             contract,
-            isLoading: false,
-            // hooks: setupHooks({web3, provider, contract})
+            isLoading: false
           })
         )
       } else {
