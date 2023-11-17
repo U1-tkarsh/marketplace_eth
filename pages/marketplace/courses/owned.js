@@ -6,26 +6,40 @@ import { useAccount, useOwnedCourses } from "@components/web3/hooks";
 import { getAllCourses } from "content/courses/fetcher";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import { useWeb3 } from "@components/providers";
 
 export default function OwnedCourses({ courses }) {
   const { account } = useAccount();
   const router = useRouter()
   const { ownedCourses } = useOwnedCourses(courses, account.data);
+  const { requireInstall } = useWeb3()
 
   return (
     <>
         <MarketHeader />
         
       <section className="grid grid-cols-1">
-      { ownedCourses.hasInitialResponse && (
-          !ownedCourses.data || ownedCourses?.data.length === 0
-        ) &&
+      { ownedCourses.isEmpty &&
           <div className="w-1/2">
             <Message type="danger">
               <div>You don't own any courses</div>
               <Link href="/marketplace" className="font-normal hover:underline">
                   <i>Purchase Course</i>
               </Link>
+            </Message>
+          </div>
+        }
+        { account.isEmpty &&
+          <div className="w-1/2">
+            <Message type="danger">
+              <div>Please connect to Metamask</div>
+            </Message>
+          </div>
+        }
+        { requireInstall &&
+          <div className="w-1/2">
+            <Message type="danger">
+              <div>Please install Metamask</div>
             </Message>
           </div>
         }
