@@ -21,8 +21,8 @@ export default function OwnedCourses({ courses }) {
       <section className="grid grid-cols-1">
       { ownedCourses.isEmpty &&
           <div className="w-1/2">
-            <Message type="danger">
-              <div>You don't own any courses</div>
+            <Message type="warning">
+            <div>You don&apos;t own any courses</div>
               <Link href="/marketplace" className="font-normal hover:underline">
                   <i>Purchase Course</i>
               </Link>

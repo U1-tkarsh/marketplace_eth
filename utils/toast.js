@@ -33,7 +33,7 @@ export const withToast = (promise) => {
           );
         },
         // other options
-        icon: "🟢",
+        icon: true,
       },
       error: {
         render({ data }) {
