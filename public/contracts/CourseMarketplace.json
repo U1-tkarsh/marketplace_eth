@@ -42,13 +42,11 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "stateMutability": "payable",
-      "type": "receive",
-      "payable": true
+      "type": "receive"
     },
     {
       "inputs": [
@@ -107,8 +105,7 @@
       "name": "purchaseCourse",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function",
-      "payable": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -121,8 +118,7 @@
       "name": "repurchaseCourse",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function",
-      "payable": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -174,8 +170,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -194,8 +189,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -241,8 +235,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [],
@@ -255,8 +248,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.4+commit.c7e474f2\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"CourseHasOwner\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"CourseIsNotCreated\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyOwner\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SenderIsNotCourseOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"courseHash\",\"type\":\"bytes32\"}],\"name\":\"activateCourse\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"courseHash\",\"type\":\"bytes32\"}],\"name\":\"deactivateCourse\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"emergencyWithdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getContractOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"courseHash\",\"type\":\"bytes32\"}],\"name\":\"getCourseByHash\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"price\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"proof\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"enum CourseMarketplace.State\",\"name\":\"state\",\"type\":\"uint8\"}],\"internalType\":\"struct CourseMarketplace.Course\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getCourseCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getCourseHashAtIndex\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"isStopped\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes16\",\"name\":\"courseId\",\"type\":\"bytes16\"},{\"internalType\":\"bytes32\",\"name\":\"proof\",\"type\":\"bytes32\"}],\"name\":\"purchaseCourse\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"courseHash\",\"type\":\"bytes32\"}],\"name\":\"repurchaseCourse\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"resumeContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"selfDestruct\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"stopContract\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"errors\":{\"CourseHasOwner()\":[{\"notice\":\"Course has already a Owner!\"}],\"CourseIsNotCreated()\":[{\"notice\":\"Course is not created!\"}],\"InvalidState()\":[{\"notice\":\"Course has invalid state!\"}],\"OnlyOwner()\":[{\"notice\":\"Only owner has an access!\"}],\"SenderIsNotCourseOwner()\":[{\"notice\":\"Sender is not course owner!\"}]},\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/CourseMarketPlace.sol\":\"CourseMarketplace\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/CourseMarketPlace.sol\":{\"keccak256\":\"0x2945cc63b5ff4993f226a43ab8ac870d98822d0d5cb46e164923884118b6be32\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://75949175766e7607c048399e08e6f4c60cf8445c9ade128dffb5ad4c8ebfda19\",\"dweb:/ipfs/QmZoaFNC3rUUJcuRSTbBo7RxUd2916RbGqocjjZF4S3zEj\"]}},\"version\":1}",
@@ -11399,11 +11391,16 @@
       "links": {},
       "address": "0xA4999E6b6630E8D03e3F00358F06e0b4c14f6283",
       "transactionHash": "0x859c44a39a1dc2ce000b25ff199d33d3ee85110a690ea31ac66684cca980da21"
+    },
+    "11155111": {
+      "events": {},
+      "links": {},
+      "address": "0x7A772339dea5E6C01c8F4704732F076680De30d2",
+      "transactionHash": "0x6ce7df937f2af0bbd0d9f95451bd5fe7b04c5fbe4cffd908fb22910d4f99e2ba"
     }
   },
   "schemaVersion": "3.4.15",
-  "updatedAt": "2023-11-22T17:39:35.873Z",
-  "networkType": "ethereum",
+  "updatedAt": "2023-11-25T05:19:49.164Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
