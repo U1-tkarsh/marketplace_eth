@@ -10,6 +10,7 @@ import { useManagedCourses, useAdmin } from "@components/web3/hooks";
 import { normalizeOwnedCourse } from "@utils/normalize";
 import { useEffect, useState } from "react";
 import { useWeb3 } from "@components/providers";
+import { withToast } from "@utils/toast";
 
 // BEFORE TX BALANCE -> 85,233893735999999996
 
@@ -75,20 +76,20 @@ export default function ManagedCourses() {
 
   const changeCourseState = async (courseHash, method) => {
     try {
-      await contract.methods[method](courseHash).send({
+      const result = await contract.methods[method](courseHash).send({
         from: account.data,
       });
     } catch (e) {
-      console.error(e.message);
+      throw new Error(e.message)
     }
   };
 
   const activateCourse = async (courseHash) => {
-    changeCourseState(courseHash, "activateCourse");
+    withToast(changeCourseState(courseHash, "activateCourse"))
   };
 
   const deactivateCourse = async (courseHash) => {
-    changeCourseState(courseHash, "deactivateCourse");
+    withToast(changeCourseState(courseHash, "deactivateCourse"))
   };
 
   const searchCourse = async (hash) => {
