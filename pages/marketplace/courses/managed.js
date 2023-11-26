@@ -78,7 +78,7 @@ export default function ManagedCourses() {
     try {
       const result = await contract.methods[method](courseHash).send({
         from: account.data,
-      });
+      }); return result
     } catch (e) {
       throw new Error(e.message)
     }
